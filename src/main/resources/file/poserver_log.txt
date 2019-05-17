@@ -1,0 +1,5 @@
+欢迎使用 PageOffice 产品
+PageOffice 注册信息：注册码：IMTG6-BSXJ-JGZ6-3BIWM<br>版本：Standard 4
+<br>此产品是<span style="color:Red;">试用版</span>，试用结束时间是 2019-08-14 13:39:58.
+<p>License文件位置：G:/ideaProject/springboot-demo/online-office/src/main/resources/file/license.lic</p>
+PageOffice 运行信息：没有日志信息。

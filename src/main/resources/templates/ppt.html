@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>在线编辑Office文件</title>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="pageoffice.js" id="po_js_main"></script>
+</head>
+<body>
+<!--POBrowser打开一个窗口用来编辑文件-->
+<a id="open_a" style="display: none;" onclick="javascript:POBrowser.openWindowModeless('/ppt','width=1200px;height=800px;');" href="#">打开文件</a>
+<!-- 页面布局 -->
+<div style="width:100%;height:900px; align-content: center" th:utext="${pageoffice}"></div>
+<script type="text/javascript">
+    function Save() {
+        document.getElementById("PageOfficeCtrl1").WebSave();
+    }
+</script>
+<script>
+    $(function () {
+        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+        var isOpera = userAgent.indexOf("Opera") > -1;
+
+        function getType() {
+            //判断是否chorme浏览器
+            if (userAgent.indexOf("Chrome") > -1) {
+                return "Chrome";
+            }
+            //判断是否IE浏览器
+            if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+                return "IE";
+            }
+
+            //判断是否Edge浏览器
+            if (userAgent.indexOf("Trident") > -1) {
+                return "Edge";
+            }
+        }
+
+        // POBrowser打开一个窗口用来编辑文件
+        function open() {
+            $("#open_a").click();
+        }
+
+        // pageOffice有很多浏览器都不支持，不支持则使用POBrowser打开一个窗口用来编辑文件
+        if (getType() != 'Edge') {
+            // 延迟一秒在打开，是因为如果即时打开，可能有些文件请求还没加载好，会检测出客户端未安装pageOffice控件
+            setTimeout(open, 1000)
+        }
+
+    });
+</script>
+</body>
+</html>
